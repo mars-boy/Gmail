@@ -1,0 +1,7 @@
+<p>home works!</p>
+<div class="grid" infinite-scroll (scrolled)="onScrollDown()">
+    <app-card  
+        *ngFor="let feed of feeds"
+        [cardDetails]="feed">
+    </app-card>
+</div>
