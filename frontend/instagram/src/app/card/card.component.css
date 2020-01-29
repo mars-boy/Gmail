@@ -1,0 +1,7 @@
+.card-height{
+    min-height: 40vh !important;
+    max-height: auto;
+    min-width: 40vw !important;
+    max-width: 45vw !important;
+    background-color: gray;
+}

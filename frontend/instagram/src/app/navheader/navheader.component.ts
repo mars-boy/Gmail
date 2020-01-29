@@ -31,7 +31,7 @@ export class NavheaderComponent implements OnInit {
   }
 
   logout(){
-    ;
+    debugger;
     this.authService.logout().subscribe( data => {
       this.router.navigate(['login']);
     } );
