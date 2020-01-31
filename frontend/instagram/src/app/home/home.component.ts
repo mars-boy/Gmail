@@ -21,20 +21,6 @@ export class HomeComponent implements OnInit {
     let tempFeed : CardDetails[] = [];
     debugger;
     tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
-    tempFeed.push(new CardDetails("aaron", "ghost", 1));
     this.feeds = this.feeds.concat(tempFeed);
     var pp = [];
   }
