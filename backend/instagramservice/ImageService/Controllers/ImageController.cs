@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using ImageService.Models;
 using Microsoft.AspNetCore.Cors;
@@ -44,6 +46,30 @@ namespace ImageService.Controllers
         public IActionResult AudioFile(string fileName) {
             var res = PhysicalFile("C:\\Users\\sai\\Desktop\\Temp2\\" + fileName, "audio/weba");
             return res;
+        }
+
+        [Route("Upload")]
+        [HttpPost]
+        public async Task<IActionResult> Upload([FromForm] string parameters, IFormFile file) {
+            var headers = HttpContext.Request.Headers;
+            string fileName = headers["FileName"];
+            long chunckId = Convert.ToInt64(headers["CurrentChunck"]);
+            long totalChuncks = Convert.ToInt64(headers["TotalChuncks"]);
+            var fileDirectory = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            var saveFilePath = Path.Combine(fileDirectory, fileName+".part");
+            var finalFilePath = Path.Combine(fileDirectory, fileName);
+            var fileMode = chunckId == 1 ? FileMode.Create : FileMode.Append;
+            if (chunckId <= totalChuncks) {
+                using (var stream = new FileStream(saveFilePath, fileMode)) {
+                    await file.CopyToAsync(stream);
+                }
+                if (chunckId == totalChuncks)
+                {
+                    System.IO.File.Move(saveFilePath, finalFilePath);
+                    System.IO.File.Delete(saveFilePath);
+                }
+            }
+            return Ok();
         }
     }
 }

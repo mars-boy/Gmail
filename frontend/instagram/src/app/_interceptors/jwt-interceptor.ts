@@ -13,7 +13,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
 
     constructor(private authService: AuthService, private dateFunctions: DateFunctions){
-
+        // this.tokenBehavior.next(authService.getUser().token);
     }
 
     private isTokenGettingRefreshed : boolean = false;
@@ -23,6 +23,9 @@ export class JwtInterceptor implements HttpInterceptor {
         debugger;
         let headers = req.headers;
         if(!req.headers.has('Jwt_Interseptor_Skip')){
+            if(!this.isTokenGettingRefreshed && this.tokenBehavior.value == null ){
+                this.tokenBehavior.next(this.authService.getUser().token);
+            }
             let loggedInUser = this.authService.getUser();
             let token = loggedInUser.token;
             var decoded = jwt_decode(token);

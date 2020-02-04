@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home.component';
 import { NavheaderComponent } from './navheader/navheader.component';
 import { CardComponent } from './card/card.component';
 import { JwtInterceptor } from './_interceptors/jwt-interceptor';
+import { UploadComponent } from './upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { JwtInterceptor } from './_interceptors/jwt-interceptor';
     LoginComponent,
     HomeComponent,
     NavheaderComponent,
-    CardComponent
+    CardComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
