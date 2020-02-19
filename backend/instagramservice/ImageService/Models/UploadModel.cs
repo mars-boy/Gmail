@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace ImageService.Models
+namespace com.picsfeed.ImageService.Models
 {
     public class UploadModel
     {
         public string Title { get; set; }
         public string Description { get; set; }
+        public string SavePath { get; set; }
 
         public virtual IList<string> Tags { get {
             List<string> tags = new List<string>();

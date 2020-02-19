@@ -4,13 +4,16 @@ using System.IO;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using ImageService.Models;
+using com.picsfeed.ImageService.Models;
+using com.picsfeed.ImageService.Services;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
-namespace ImageService.Controllers
+using RabbitMQ.Client;
+
+namespace com.picsfeed.ImageService.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -18,9 +21,15 @@ namespace ImageService.Controllers
     {
 
         private readonly ImageServiceConfig _imageServiceConfig;
+        private readonly RabbitMqConfig _rabbitMqConfig;
+        private readonly IImageService _imageService; 
 
-        public ImageController(IOptionsSnapshot<ImageServiceConfig> imageServiceConfig ) {
+        public ImageController(IOptionsSnapshot<ImageServiceConfig> imageServiceConfig,
+            IOptionsSnapshot<RabbitMqConfig> rabbitMqConfig,
+            IImageService imageService) {
             this._imageServiceConfig = imageServiceConfig.Value;
+            this._rabbitMqConfig = rabbitMqConfig.Value;
+            this._imageService = imageService;
         }
 
         [Route("GetMainifest/{mpdName}")]
@@ -69,6 +78,10 @@ namespace ImageService.Controllers
                     System.IO.File.Delete(saveFilePath);
                 }
             }
+            UploadModel uploadModel = new UploadModel {
+                SavePath = finalFilePath
+            };
+            _imageService.PublishToRabbit(uploadModel);
             return Ok();
         }
     }

@@ -48,7 +48,6 @@ namespace AuthenticationService.Controllers
             else {
                 return Ok(modifiedUserDetails);
             }
-            return Ok(userDetails);
         }
 
     }

@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.705
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationService", "AuthenticationService\AuthenticationService.csproj", "{D16FB75C-6DA3-4E95-8923-35FB4534B92E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AuthenticationService", "AuthenticationService\AuthenticationService.csproj", "{D16FB75C-6DA3-4E95-8923-35FB4534B92E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageService", "ImageService\ImageService.csproj", "{2E8AACCB-5278-40F2-A6D5-CA85D3AF2475}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "com.picsfeed.ImageService", "ImageService\com.picsfeed.ImageService.csproj", "{2E8AACCB-5278-40F2-A6D5-CA85D3AF2475}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

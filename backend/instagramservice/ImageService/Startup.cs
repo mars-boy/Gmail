@@ -5,7 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ImageService.Models;
+using com.picsfeed.ImageService.Models;
+using com.picsfeed.ImageService.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +18,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace ImageService
+namespace com.picsfeed.ImageService
 {
     public class Startup
     {
@@ -43,7 +44,10 @@ namespace ImageService
             services.AddOptions();
             var imageServiceConfigSection = Configuration.GetSection("ImageServiceConfig");
             services.Configure<ImageServiceConfig>(imageServiceConfigSection);
+            var rabbitConfig = Configuration.GetSection("RabbitMqConfig");
+            services.Configure<RabbitMqConfig>(rabbitConfig);
 
+            services.AddScoped<IImageService, Services.ImageService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
